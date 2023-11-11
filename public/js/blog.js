@@ -5,36 +5,33 @@ const newFormHandler = async (event) => {
   const heading = document.querySelector('#blog-heading').value.trim();
   const comment = document.querySelector('#blog-comment').value.trim();
   const user_name = await getuserData();
+  const currentTime = new Date(); // Get the current date and time
+  const timestamp = currentTime.toISOString(); // Convert the date and time to a string format
 
-  if (heading && user_name && customer) {
-    const requestBody = {
-      heading,
-      user_name,
-      comment
-      
-    };
+  // Include the timestamp when submitting the blog post
+  const postData = {
+    heading: heading,
+    comment: comment,
+    user_name: user_name,
+    timestamp: timestamp
+  };
 
-    // Make the POST request
-    const response = await fetch(`/api/blogs`, {
-      method: 'POST',
-      body: JSON.stringify(requestBody),
-      headers: {
-        'Content-Type': 'application/json',
-    
-      },
-    });
+  // Make the POST request
+  const response = await fetch(`/api/blogs`, {
+    method: 'POST',
+    body: JSON.stringify(postData),
+    headers: {
+      'Content-Type': 'application/json',
 
-    if (response.ok) {
-      document.location.replace('/home');
-    } else {
-      alert('Failed to create blog');
-    }
+    },
+  });
+
+  if (response.ok) {
+    document.location.replace('/');
+  } else {
+    alert('Failed to create blog');
   }
 };
-
-document
-  .querySelector('.new-blog-form')
-  .addEventListener('submit', newFormHandler);
 
 // const delButtonHandler = async (event) => {
 //   if (event.target.hasAttribute('data-id')) {
@@ -53,7 +50,10 @@ document
 // };
 
 
- 
+
+document
+  .querySelector('.new-blog-form')
+  .addEventListener('submit', newFormHandler);
 
 // document
 //   .querySelector('.blog-list')

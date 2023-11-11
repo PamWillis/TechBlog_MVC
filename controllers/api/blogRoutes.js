@@ -11,12 +11,14 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+// --------------------------------------------------
 router.post('/', withAuth, async (req, res) => {
   try {
+    const currentTime = new Date(); // Get the current timestamp
     const newBlog = await Blog.create({
       ...req.body,
       user_id: req.session.user_id,
+      time: currentTime, // Add the current timestamp to the new blog post
     });
 
     res.status(200).json(newBlog);
@@ -24,7 +26,7 @@ router.post('/', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
-
+// --------------------------------------------------
 //router asked if logged in before allowing to delete
 router.delete('/:id', withAuth, async (req, res) => {
   try {

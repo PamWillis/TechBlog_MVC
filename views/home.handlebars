@@ -1,18 +1,21 @@
 
 
 <h1>Welcome to my blog page</h1>
-<p>please log in to </p>
+<h3>Please log in contribute and view or edit your own blogs</h3>
 
 <div>
-    <h1>List of Blogs</h1>
+    <h3>List of Blogs</h3>
         {{#each blogs}}
-         <div class="card">
+         <div class="home-card">
         <h2>{{heading}}</h2>
-        <h4>By: {{user.name}}</h4>
+        <div>
+        <h3>By: {{user.name}}</h3>
+        <p>{{createdAt}}</p>
+        </div>
         <h3>Comments</h3>
         <p>{{comment}}</p>
     </div>
     {{/each}}
 </div>
-<link rel="stylesheet" href="/css/home.css">
+
 <script src="/js/blog.js"></script>
