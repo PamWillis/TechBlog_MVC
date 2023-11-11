@@ -11,16 +11,11 @@ Blog.init(
             primaryKey: true,
             autoIncrement: true
         },
-        title: {
+        heading: {
             type: DataTypes.STRING
         },
         comment: {
             type: DataTypes.STRING
-        },
-        date_created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -29,4 +24,14 @@ Blog.init(
                 key: 'id',
             },
         },
-    });module.exports = Blog;
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'blog',
+    }
+);
+
+module.exports = Blog;

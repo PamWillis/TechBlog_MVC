@@ -1,0 +1,50 @@
+.banner {
+    background-color: #d90074; /* Background color */
+    color: #FFF; /* Text color */
+    text-align: left; /* Center align text */
+    padding: 20px; /* Add padding for spacing */
+    display: flex;
+    flex-direction: row; /* Ensure the banner and nav are in the same row */
+    justify-content: space-between; /* Push nav to the left */
+    align-items: center; /* Vertically center items */
+  }
+  
+  /* Style the h1 header within the banner */
+  .banner h1 {
+    font-size: 36px; /* Adjust the font size */
+  }
+  
+  /* Style the paragraph text within the banner */
+  .banner p {
+    font-size: 18px; /* Adjust the font size */
+  }
+
+.card {
+    
+    margin-left: 1rem;
+    width: 50rem;
+    border-radius: 2rem;
+    border: 2px solid black;
+    padding: 2rem;
+
+}
+
+
+.card h1 {
+    color: white;
+    background-color: black;
+    font-size: 40px;
+    font-weight:black;
+
+}
+
+.card h2 {
+    color: white;
+    background-color: black;
+    font-size: 40px;
+}
+.card h3 {
+    color: orange;
+}
+
+

@@ -1,2 +1,18 @@
 
- <div>This is the content for the body.</div>
+
+<h1>Welcome to my blog page</h1>
+<p>please log in to </p>
+
+<div>
+    <h1>List of Blogs</h1>
+        {{#each blogs}}
+         <div class="card">
+        <h2>{{heading}}</h2>
+        <h4>By: {{user.name}}</h4>
+        <h3>Comments</h3>
+        <p>{{comment}}</p>
+    </div>
+    {{/each}}
+</div>
+<link rel="stylesheet" href="/css/home.css">
+<script src="/js/blog.js"></script>

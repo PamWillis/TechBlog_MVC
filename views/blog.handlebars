@@ -1,0 +1,49 @@
+{{!-- <div class="row">
+    {{#if activeUser}}
+    <div>Welcome active user!</div>
+    {{else}}
+    <div>Welcome inactive user</div>
+    {{/if}}
+</div> --}}
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h3>Create a Blog:</h3>
+
+        <form class="form new-blog-form" action="/blog" method="POST">
+            <div class="form-group">
+                <label for="blog-heading">heading:</label>
+                <input class="form-input" type="text" id="blog-heading" name="blog-heading" />
+            </div>
+            <div>
+                {{user.name}}
+            </div>
+            <div class="form-group">
+                <label for="blog-comment">comment:</label>
+                <input class="form-input" type="text" id="blog-comment" name="blog-comment" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit Blog</button>
+            </div>
+        </form>
+    </div>
+
+    {{#if blog.length}}
+    <div class="col-md-6 blog-list">
+        <h3>Current Blog:</h3>
+
+        {{#each blogs as |blog|}}
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <h4><a href="/blogs/{{blog.id}}">{{blog.heading}}</a></h4>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-sm btn-danger" blog-id="{{blog.id}}">DELETE</button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+</div>
+
+<script src="/js/blog.js"></script>
