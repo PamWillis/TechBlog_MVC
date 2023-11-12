@@ -4,7 +4,6 @@ const newFormHandler = async (event) => {
 
   const heading = document.querySelector('#blog-heading').value.trim();
   const comment = document.querySelector('#blog-comment').value.trim();
-  const user_name = await getuserData();
   const currentTime = new Date(); // Get the current date and time
   const timestamp = currentTime.toISOString(); // Convert the date and time to a string format
 
@@ -12,7 +11,6 @@ const newFormHandler = async (event) => {
   const postData = {
     heading: heading,
     comment: comment,
-    user_name: user_name,
     timestamp: timestamp
   };
 
