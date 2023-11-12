@@ -1,8 +1,7 @@
 const express = require('express');
-const moment = require('moment');
 const router = express.Router();
-const Blog = require('../models/Blog');
-const User = require('../models/User'); // Import the User model
+const { User, Blog } = require('../../models')
+const withAuth =  require('../../utils/auth')
 
 // GET all blogs
 router.get('/', async (req, res) => {
@@ -14,41 +13,24 @@ router.get('/', async (req, res) => {
   }
 });
 // --------------------------------------------------
-router.post('/create', async (req, res) => {
-  try {
-    const { heading, comment, date } = req.body;
-    const userId = req.session.user_id;
+//post to the dashboard
+router.post("/", async (req, res) => {
+    
+  const user_id = req.session.user_id;
+  const {heading, comment} = req.body;
 
-    // Retrieve the user based on the user_id
-    const user = await User.findByPk(userId);
-    // If the user exists, create a new blog post associated with that user
-    if (user) {
-      // Parse the date string using Moment.js
-      const parsedDate = moment(date, 'DD/MM/YYYY', true);
-
-      // Check if the date is valid
-      if (parsedDate.isValid()) {
-        // Create a new blog post with the parsed date
-        const newBlog = await Blog.create({
+  try{
+      const newBlog = await Post.create({
           heading,
-          comment,
-          date: parsedDate.toDate(),
-          // Associate the blog post with the user
-          user: user,
-        });
-      
-        console.log(newBlog);
-        res.status(200).json(newBlog);
-      } else {
-        res.status(400).json({ message: 'Invalid date format' });
-      }
-    } else {
-      res.status(404).json({ message: 'User not found' });
-    }
-  } catch (err) {
-    res.status(400).json(err);
+          comment, 
+          user_id
+      })
+
+      res.status(200).json(newBlog)
+  }catch(err){
+      res.status(400).json(err)
   }
-});
+})
 
 
 // --------------------------------------------------

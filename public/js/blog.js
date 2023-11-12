@@ -6,7 +6,8 @@ const newFormHandler = async (event) => {
   const comment = document.querySelector('#blog-comment').value.trim();
   const currentTime = new Date(); // Get the current date and time
   const timestamp = currentTime.toISOString(); // Convert the date and time to a string format
-
+  const date = new Date("Sun Nov 12 2023 16:57:42 GMT-0500 (Eastern Standard Time)");
+  const shortenedDate = date.toDateString();
   // Include the timestamp when submitting the blog post
   const postData = {
     heading: heading,
