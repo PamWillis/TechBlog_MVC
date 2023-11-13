@@ -13,25 +13,28 @@ router.get('/', async (req, res) => {
   }
 });
 // --------------------------------------------------
-//post to the dashboard
+//post to the homepage
 router.post("/", async (req, res) => {
-    
   const user_id = req.session.user_id;
-  const {heading, comment} = req.body;
+  const { heading, comment } = req.body;
 
-  try{
-      const newBlog = await Post.create({
-          heading,
-          comment, 
-          user_id
-      })
+  try {
+    const currentTime = new Date(); // Get the current date and time
+    const timestamp = currentTime.toISOString(); // Convert the date and time to a string format
 
-      res.status(200).json(newBlog)
-  }catch(err){
-      res.status(400).json(err)
+    const postData = await Post.create({
+      heading,
+      comment,
+      user_id,
+      timestamp, 
+    });
+
+    res.status(200).json(postData);
+  } catch (err) {
+    console.error('Error creating blog post:', err);
+    res.status(400).json(err);
   }
-})
-
+});
 
 // --------------------------------------------------
 //router asked if logged in before allowing to delete
