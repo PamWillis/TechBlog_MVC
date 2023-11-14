@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User, Blog } = require('../../models')
-const withAuth =  require('../../utils/auth')
+const withAuth = require('../../utils/auth')
 
 // GET all blogs
 router.get('/', async (req, res) => {
@@ -19,19 +19,19 @@ router.post("/", async (req, res) => {
   const { heading, comment } = req.body;
 
   try {
-    const currentTime = new Date(); // Get the current date and time
-    const timestamp = currentTime.toISOString(); // Convert the date and time to a string format
-
-    const postData = await Post.create({
+    const blogData = await Blog.create({
       heading,
       comment,
-      user_id,
-      timestamp, 
+      user_id: req.session.user_id,
+
     });
 
-    res.status(200).json(postData);
+    res.status(200).json(blogData);
   } catch (err) {
+
+    console.log(err)
     console.error('Error creating blog post:', err);
+    console.log(err)
     res.status(400).json(err);
   }
 });
@@ -58,14 +58,6 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
-router.get('/blog', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/blog');
-    return;
-  }
 
-  res.render('home');
-});
 
 module.exports = router;
