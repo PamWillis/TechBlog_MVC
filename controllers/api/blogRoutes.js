@@ -13,6 +13,27 @@ router.get('/', async (req, res) => {
   }
 });
 // --------------------------------------------------
+// GET all blogs by id
+router.get('/:id', withAuth, async (req, res) => {
+  try {
+    const blogData = await Blog.findAll({
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      },
+    });
+
+    if (!blogData) {
+      res.status(404).json({ message: 'No Blog found with this id!' });
+      return;
+    }
+
+    res.status(200).json(blogData, + "All blogs have been retrieved");
+  } catch (err) {
+    res.status(500).json("Could not find blog");
+  }
+});
+// --------------------------------------------------
 //post to the homepage
 router.post("/", async (req, res) => {
   const user_id = req.session.user_id;

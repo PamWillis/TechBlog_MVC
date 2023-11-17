@@ -14,7 +14,7 @@ const newFormHandler = async (event) => {
     
 
     };
-    console.log("TWO")
+  
     const response = await fetch(`/api/blogs`, {
       method: 'POST',
       body: JSON.stringify(blogData),
