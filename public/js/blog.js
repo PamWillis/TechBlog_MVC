@@ -5,13 +5,13 @@ const newFormHandler = async (event) => {
     const heading = document.querySelector('#blog-heading').value.trim();
     const content = document.querySelector('#blog-content').value.trim();
 
-    const date = new Date("Sun Nov 12 2023 16:57:42 GMT-0500 (Eastern Standard Time)");
+
 
 
     const blogData = {
       heading: heading,
       content: content,
-      date: date
+    
 
     };
     console.log("TWO")
