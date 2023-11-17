@@ -29,6 +29,8 @@ router.get('/', async (req, res) => {
   }
 });
 
+// --------------------------------------------------
+//get blog by user id
 router.get('/blog/:id', async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
