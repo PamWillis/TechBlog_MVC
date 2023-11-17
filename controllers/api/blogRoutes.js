@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, Blog } = require('../../models')
+const { User, Blog, } = require('../../models')
 const withAuth = require('../../utils/auth')
 
 // GET all blogs
@@ -16,13 +16,15 @@ router.get('/', async (req, res) => {
 //post to the homepage
 router.post("/", async (req, res) => {
   const user_id = req.session.user_id;
-  const { heading, content } = req.body;
+  const { heading, content, date } = req.body;
 
   try {
     const blogData = await Blog.create({
       heading,
       content,
       user_id: req.session.user_id,
+      date
+      
 
     });
 
