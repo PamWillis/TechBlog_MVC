@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
     style: 'home.css',
       blogs,
       logged_in: req.session.logged_in
+      
     });
   } catch (err) {
     
@@ -54,26 +55,45 @@ router.get('/blog/:id', async (req, res) => {
 });
 //__________________________________________________________________
 // Use withAuth middleware to prevent access to route
+// router.get('/blog', withAuth, async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ['password'] },
+//       include: [{ model: Blog }],
+//     });
+
+//     const user = userData.get({ plain: true });
+
+//     res.render('blog', {
+//       ...user,
+//       logged_in: true
+//     });
+//   } catch (err) {
+    
+//     res.status(500).json(err);
+//   }
+// });
+
 router.get('/blog', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Blog }],
+      include: [{ model: Blog, include: [Comments] }],
     });
 
     const user = userData.get({ plain: true });
 
     res.render('blog', {
       ...user,
-      logged_in: true
+      logged_in: true,
     });
   } catch (err) {
-    
     res.status(500).json(err);
   }
 });
-//__________________________________________________________________
+//________________________________________________________
 // bet blog id info and post to blog\id
 router.get('/blog/:id', (req, res) => {
   Post.findOne({
@@ -117,9 +137,6 @@ router.get('/login', (req, res) => {
 
   res.render('login');
 });
-
-
-
 
 
 

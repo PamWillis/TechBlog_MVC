@@ -14,8 +14,12 @@
         </div>
         <h3>Content</h3>
         <p>{{content}}</p>
+        {{each comments}}
+        <p>{{remark}}</p>
+        {{\comments}}
     </div>
     {{/each}}
 </div>
 
 <script src="/js/blog.js"></script>
+<script src="/js/comments.js"></script>

@@ -1,6 +1,6 @@
 const newCommentHandler = async (event) => {
     try {
-    const comments = document.querySelector('#comments-remark').valuetrim.trim();
+    const comments = document.querySelector('#comments-remark').value.trim();
 
     const commentData = {
         remark: remark
@@ -9,7 +9,7 @@ const newCommentHandler = async (event) => {
 
     const response = await fetch(`/api/comments`, {
         method: 'POST',
-        body: JSON.stringify(blogData),
+        body: JSON.stringify(commentData),
         remark: {
             'Content-Type': 'application/json',
         },
@@ -17,7 +17,7 @@ const newCommentHandler = async (event) => {
 
 
     if (response.ok) {
-        console.log('Comment post created successfully:', blogData);
+        console.log('Comment post created successfully:', commentData);
         document.location.replace('/');
       } else {
         console.error('Failed to create comment:', response.status, response.statusText);

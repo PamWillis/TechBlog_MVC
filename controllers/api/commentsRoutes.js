@@ -1,23 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const {Comments} = require('../../models')
+const { User, Blogs, Comments } = require('../../models')
 const withAuth = require('../../utils/auth')
 
 //post to the homepage
 router.post('/comments', withAuth, async (req, res) => {
-    const user_id = req.session.user_id;
-    const { blog_id} = req.body;
-  
-    try {
-      const commentsData = await Comments.create({
-       remark,
-       blog_id: blog_id,
-        user_id: req.session.user_id,
-      });
-  
-      res.status(200).json(commentsData);
-    } catch (err) {
-  
-      res.status(400).json(err);
-    }
-  });
+  const user_id = req.session.user_id;
+  const { remark } = req.body;
+  console.log(user_id)
+  try {
+    const commentsData = await Comments.create({
+      remark,
+      user_id: req.session.user_id,
+
+    });
+    console.log(commentsData)
+    res.status(200).json(commentsData);
+  } catch (err) {
+
+    res.status(400).json(err);
+  }
+});
