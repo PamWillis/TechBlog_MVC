@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, Blogs, Comments } = require('../../models')
+const { User, Blog, Comments } = require('../../models')
 const withAuth = require('../../utils/auth')
 
 //post to the homepage
@@ -21,3 +21,4 @@ router.post('/comments', withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
+module.exports = router;
