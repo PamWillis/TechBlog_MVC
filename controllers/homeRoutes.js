@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 });
 
 // --------------------------------------------------
-//get blog by user id
+//get blog by user id (title on blog/dashboard page)
 router.get('/blog/:id', async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
@@ -45,7 +45,7 @@ router.get('/blog/:id', async (req, res) => {
 
     const blog = blogData.get({ plain: true });
 
-    res.render('blog', {
+    res.render('update', {
       ...blog,
       logged_in: req.session.logged_in
     });
@@ -75,28 +75,10 @@ router.get('/blog', withAuth, async (req, res) => {
   }
 });
 
-// router.get('/blog', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Blog, include: [Comments] }],
-//     });
-
-//     const user = userData.get({ plain: true });
-
-//     res.render('blog', {
-//       ...user,
-//       logged_in: true,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 //________________________________________________________
-// bet blog id info and post to blog\id
+// bet blog id info and post to update
 router.get('/blog/:id', (req, res) => {
-  Post.findOne({
+  Blog.findOne({
           where: {
               id: req.params.id
           },
@@ -108,13 +90,13 @@ router.get('/blog/:id', (req, res) => {
           ],
       })
       consolelog(err)
-      .then(dbPostData => {
-          if (!dbPostData) {
+      .then(blogData => {
+          if (!blogData) {
             consolelog(err)
               res.status(404).json({ message: 'No post found with this id' });
               return;
           }
-          const post = dbPostData.get({ plain: true });
+          const post = blogData.get({ plain: true });
       
           res.render('update')
 
