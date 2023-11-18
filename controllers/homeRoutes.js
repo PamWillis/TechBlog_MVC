@@ -77,7 +77,7 @@ router.get('/blog', withAuth, async (req, res) => {
 
 //________________________________________________________
 // bet blog id info and post to update
-router.get('/blog/:id', (req, res) => {
+router.get('/blog/id', (req, res) => {
   Blog.findOne({
           where: {
               id: req.params.id
@@ -98,7 +98,7 @@ router.get('/blog/:id', (req, res) => {
           }
           const post = blogData.get({ plain: true });
       
-          res.render('update')
+          res.render('singleBlog')
 
 
       })

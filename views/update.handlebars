@@ -1,16 +1,5 @@
 <div>
     <h3>Update Blog</h3>
-        <div>{{blog.id}}
-         <div class="home-card" id="#single-blog">
-        <h2>{{heading}}</h2>
-        <div>
-        <h3>By: {{user.name}}</h3>
-        <p>{{format_date createdAt}}</p>
-        </div>
-        <h3>Content</h3>
-        <p>{{content}}</p>
-    </div>
-    </div>
-  
-</div>
-<script src="/js/update.js"></script>
+{{> singleBlog}}
+{{!--
+<script src="/js/update.js"></script> --}}

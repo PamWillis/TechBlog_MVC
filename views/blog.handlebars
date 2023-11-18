@@ -8,7 +8,7 @@
 
 
 <div class="row ml-4 mt-4">
-    <div class="col-md-6">
+    <div class="col-md-6 card">
         <h3>Create a Blog:</h3>
 
         <form class="form new-blog-form" action="/api/blogs" method="POST">
@@ -29,10 +29,12 @@
             </div>
         </form>
     </div>
+   
 
     {{#if blogs.length}}
-    <div class="col-md-6 blog-list">
-        <h3>Current Blog:</h3>
+    <div class="col-md-6 blog-list card">
+        <h3>Your Current Blogs:</h3>
+        <p>Click on a title to review or update</p>
 
         {{#each blogs as |blog|}}
         <div class="row mb-2">
