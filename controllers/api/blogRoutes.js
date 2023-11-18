@@ -43,7 +43,7 @@ router.delete('/:id', withAuth, async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-console.log(blogData)
+
     if (!blogData) {
       res.status(404).json({ message: 'No Blog found with this id!' });
       return;
@@ -57,6 +57,29 @@ console.log(blogData)
 });
 
 //_________________________________________________________
+//update blog
+router.put("/", async (req, res) => {
+  const blog_id = 
+  const user_id = req.session.user_id;
+  const { heading, content } = req.body;
+
+  try {
+    const [rowsAffected] = await Blog.update(
+      { heading, content },
+      { where: { blog_id, user_id } }
+    );
+
+    if (rowsAffected === 0) {
+      res.status(404).json({ message: 'No Blog found with this id!' });
+      return;
+    }
+
+    res.status(200).json({ message: 'Blog has been updated' });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Could not update blog' });
+  }
+});
 
 
 
