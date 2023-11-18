@@ -52,7 +52,7 @@ router.get('/blog/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//__________________________________________________________________
 // Use withAuth middleware to prevent access to route
 router.get('/blog', withAuth, async (req, res) => {
   try {
@@ -73,6 +73,40 @@ router.get('/blog', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+//__________________________________________________________________
+// bet blog id info and post to blog\id
+router.get('/blog/:id', (req, res) => {
+  Post.findOne({
+          where: {
+              id: req.params.id
+          },
+          attributes: [
+              'id',
+              'heading',
+              'content',
+              'created_at'
+          ],
+      })
+      consolelog(err)
+      .then(dbPostData => {
+          if (!dbPostData) {
+            consolelog(err)
+              res.status(404).json({ message: 'No post found with this id' });
+              return;
+          }
+          const post = dbPostData.get({ plain: true });
+      
+          res.render('blog/${id}')
+
+
+      })
+      .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+      });
+});
+
+//_____________________________________________________________________
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route

@@ -8,6 +8,7 @@ const newFormHandler = async (event) => {
     const blogData = {
       heading: heading,
       content: content,
+    
     };
   
     const response = await fetch(`/api/blogs`, {

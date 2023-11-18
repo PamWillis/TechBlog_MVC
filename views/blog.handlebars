@@ -18,7 +18,7 @@
             </div>
             <div>
                 <div>{{user.name}}
-                {{format_date createdAt}}</div>
+                    {{format_date createdAt}}</div>
             </div>
             <div class="form-group">
                 <label for="blog-content">content:</label>
@@ -37,7 +37,7 @@
         {{#each blogs as |blog|}}
         <div class="row mb-2">
             <div class="col-md-8">
-                <h4><a href="/blogs/{{blog.id}}">{{blog.heading}}</a></h4>
+                <h3><a href="/blogs/{{blog.id}}">{{blog.heading}}</a></h3>
             </div>
             <div class="col-md-4">
                 <button class="btn btn-sm btn-danger" blog-id="{{blog.id}}">DELETE</button>
