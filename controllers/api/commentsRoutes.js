@@ -1,5 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const {Comments} = require('../../models')
+const withAuth = require('../../utils/auth')
+
 //post to the homepage
-router.post('/comments', async (req, res) => {
+router.post('/comments', withAuth, async (req, res) => {
     const user_id = req.session.user_id;
     const { blog_id} = req.body;
   
