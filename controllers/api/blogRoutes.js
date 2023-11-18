@@ -58,8 +58,8 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 //_________________________________________________________
 //update blog
-router.put("/", async (req, res) => {
-  const blog_id = 
+router.put("/:id", async (req, res) => {
+  const blog_id = req.params.id;
   const user_id = req.session.user_id;
   const { heading, content } = req.body;
 
