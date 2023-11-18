@@ -4,3 +4,7 @@ module.exports = {
       return date.toLocaleDateString();
     }
 }
+
+getBlogById => {
+  const BlogId = document.getElementById
+}

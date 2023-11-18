@@ -96,7 +96,7 @@ router.get('/blog/:id', (req, res) => {
           }
           const post = dbPostData.get({ plain: true });
       
-          res.render('blog/${id}')
+          res.render('update')
 
 
       })
