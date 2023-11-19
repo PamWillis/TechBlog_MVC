@@ -1,16 +1,31 @@
-
-
-<h1>Welcome to my blog page</h1>
-<h3>Please log in contribute and view or edit your own blogs</h3>
-
 <div>
+    {{#if logged_in}}
+    {{#if blogs.length}}
+    <div class="col-md-6 blog-list card">
+        <h3>All Current Blogs:</h3>
+        <p>Click on a title to read and add a comment</p>
+
+        {{#each blogs as |blog|}}
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <h3><a href="/blog/{{blog.id}}">{{blog.heading}}</a></h3>
+                <p>{{format_date createdAt}}</p>
+            </div>
+            </div>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    {{else}}
+    <h1>Welcome to my blog page</h1>
+    <h3>Please log in contribute and view or edit your own blogs</h3>
     <h3>List of Blogs</h3>
-        {{#each blogs}}
-         <div class="home-card">
+    {{#each blogs}}
+    <div class="home-card">
         <h2>{{heading}}</h2>
         <div>
-        <h3>By: {{user.name}}</h3>
-        <p>{{format_date createdAt}}</p>
+            <h3>By: {{user.name}}</h3>
+            <p>{{format_date createdAt}}</p>
         </div>
         <h3>Content</h3>
         <p>{{content}}</p>
@@ -20,6 +35,7 @@
     </div>
     {{/each}}
 </div>
+{{/if}}
 
 <script src="/js/blog.js"></script>
 <script src="/js/comments.js"></script>

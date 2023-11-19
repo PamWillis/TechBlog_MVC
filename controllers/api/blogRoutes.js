@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { User, Blog, } = require('../../models')
+const { User, Blog, Comments } = require('../../models')
 const withAuth = require('../../utils/auth')
 
 // GET all blogs
@@ -33,7 +33,27 @@ router.post("/", async (req, res) => {
   }
 });
 
-// --------------------------------------------------
+// // --------------------------------------------------
+// //add comments
+// router.post('/:id', withAuth, async (req, res) => {
+//   const blog_id = req.params.id;
+//   const { Comments } = req.body;
+
+//   try {
+//     const commentsData = await Comments.create(
+//       { remark },
+//       { where: { id: blog_id } }
+
+//     );
+
+//     console.log(commentsData)
+//     res.status(200).json(commentsData);
+//   } catch (err) {
+
+//     res.status(400).json(err);
+//   }
+// });
+//_______________________________________________________________
 //router asked if logged in before allowing to delete
 router.delete('/:id', withAuth, async (req, res) => {
   try {
@@ -60,7 +80,6 @@ router.delete('/:id', withAuth, async (req, res) => {
 //update blog
 router.put("/:id", async (req, res) => {
   const blog_id = req.params.id;
-  const user_id = req.session.user_id;
   const { heading, content } = req.body;
 
   try {

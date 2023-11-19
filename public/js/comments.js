@@ -7,7 +7,7 @@ const newCommentHandler = async (event) => {
     };
 
 
-    const response = await fetch(`/api/comments`, {
+    const response = await fetch(`/api/blogs/${blogID}`, {
         method: 'POST',
         body: JSON.stringify(commentData),
         remark: {
@@ -32,3 +32,5 @@ const newCommentHandler = async (event) => {
   document
   .querySelector('.new-comment-form')
   .addEventListener('submit', newCommentHandler);
+
+
