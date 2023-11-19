@@ -77,39 +77,39 @@ router.get('/blog', withAuth, async (req, res) => {
 
 //________________________________________________________
 // get blog id info and post to update
-router.get('/blog/:id', (req, res) => {
-  Blog.findOne({
-          where: {
-              id: req.params.id
-          },
-          attributes: [
-              'id',
-              'heading',
-              'content',
-              'created_at'
-          ],
+// router.get('/blog/:id', (req, res) => {
+//   Blog.findOne({
+//           where: {
+//               id: req.params.id
+//           },
+//           attributes: [
+//               'id',
+//               'heading',
+//               'content',
+//               'created_at'
+//           ],
          
-      })
+//       })
      
-      consolelog(err)
-      .then(blogData => {
-          if (!blogData) {
-            consolelog(err)
-              res.status(404).json({ message: 'No post found with this id' });
-              return;
-          }
-          const post = blogData.get({ plain: true });
+//       consolelog(err)
+//       .then(blogData => {
+//           if (!blogData) {
+//             consolelog(err)
+//               res.status(404).json({ message: 'No post found with this id' });
+//               return;
+//           }
+//           const post = blogData.get({ plain: true });
    
       
-          res.render('singleBlog')
+//           res.render('blog', {blogid: req.params.id})
 
 
-      })
-      .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
-      });
-});
+//       })
+//       .catch(err => {
+//           console.log(err);
+//           res.status(500).json(err);
+//       });
+// });
 
 //_____________________________________________________________________
 
