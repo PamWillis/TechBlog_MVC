@@ -8,8 +8,8 @@
         <h3>Update Blog:</h3>
 
         <form class="form update-blog-form" action="/api/blogs" method="PUT">
-           <input type="hidden" name="blogID" value="{{blog.id}}"/>
-           {{blog.id}} blog
+           <input type="hidden" name="blogID" value="{{id}}"/>
+           {{id}} blog
             <div class="form-group">
                 <label form="blog-heading">heading:</label>
                 <input class="form-input" type="text" id="blog-heading" name="heading" />

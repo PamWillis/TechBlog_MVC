@@ -66,7 +66,7 @@ router.put("/:id", async (req, res) => {
   try {
     const [rowsAffected] = await Blog.update(
       { heading, content },
-      { where: { blog_id, user_id } }
+      { where: { id: blog_id } }
     );
 
     if (rowsAffected === 0) {

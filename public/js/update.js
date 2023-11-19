@@ -7,7 +7,7 @@ const updateFormHandler = async (event) => {
     const heading = document.querySelector('#blog-heading').value.trim();
     const content = document.querySelector('#blog-content').value.trim();
     const blogID = document.querySelector('input[name="blogID"]').value.trim();
-    alert('$blogID', blogID)
+
     const blogData = {
       
       heading: heading,
