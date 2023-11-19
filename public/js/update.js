@@ -11,7 +11,7 @@ const updateFormHandler = async (event) => {
     
     };
   
-    const response = await fetch(`/api/blogs`, {
+    const response = await fetch(`/api/blogs/${id}`, {
       method: 'PUT',
       body: JSON.stringify(blogData),
       headers: {
@@ -20,8 +20,8 @@ const updateFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      console.log('Blog post updated successfully:', blogData);
-      document.location.replace('/');
+      console.log('Blog put updated successfully:', blogData);
+      document.location.replace('/blog');
     } else {
       console.error('Failed to update blog:', response.status, response.statusText);
       alert('Failed to update blog');

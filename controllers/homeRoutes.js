@@ -76,8 +76,8 @@ router.get('/blog', withAuth, async (req, res) => {
 });
 
 //________________________________________________________
-// bet blog id info and post to update
-router.get('/blog/id', (req, res) => {
+// get blog id info and post to update
+router.get('/blog/:id', (req, res) => {
   Blog.findOne({
           where: {
               id: req.params.id
@@ -88,7 +88,9 @@ router.get('/blog/id', (req, res) => {
               'content',
               'created_at'
           ],
+         
       })
+     
       consolelog(err)
       .then(blogData => {
           if (!blogData) {
@@ -97,6 +99,7 @@ router.get('/blog/id', (req, res) => {
               return;
           }
           const post = blogData.get({ plain: true });
+   
       
           res.render('singleBlog')
 
