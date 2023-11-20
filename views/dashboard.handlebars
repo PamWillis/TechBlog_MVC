@@ -29,21 +29,25 @@
             </div>
         </form>
     </div>
-   
+
 
     {{#if blogs.length}}
-    <div class="col-md-6 blog-list card">
+    <div class="col-md-6 card delete">
         <h3>Your Current Blogs:</h3>
         <p>Click on a title to review or update</p>
 
         {{#each blogs as |blog|}}
-        <div class="row mb-2">
-            <div class="col-md-8">
+        <div class="row mb-6">
+            <div class="col-md-6">
                 <h3><a href="/blog/{{blog.id}}">{{blog.heading}}</a></h3>
                 <p>{{format_date createdAt}}</p>
             </div>
-            <div class="col-md-4">
-                <button class="btn btn-sm btn-danger" blog-id="{{blog.id}}">DELETE</button>
+            <div class="col-md-6">
+                <button class="btn btn-sm btn-danger " blog-id="{{blog.id}}">DELETE</button>
+               
+                <a href="/update">
+                <button class="btn btn-sm btn-info">UPDATE</button>
+                </a>
             </div>
         </div>
         {{/each}}
@@ -51,4 +55,4 @@
     {{/if}}
 </div>
 
-<script src="/js/blog.js"></script>
+<script src="/js/dashboard.js"></script>
