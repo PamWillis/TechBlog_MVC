@@ -14,6 +14,30 @@ router.get('/', async (req, res) => {
 });
 
 // --------------------------------------------------
+//get one by id
+router.get('/blog/:id', async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const blog = blogData.get({ plain: true });
+
+    res.render('update', {
+      ...blog,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// --------------------------------------------------
 //post to the homepage
 router.post("/", async (req, res) => {
   const user_id = req.session.user_id;
@@ -33,26 +57,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// // --------------------------------------------------
-// //add comments
-// router.post('/:id', withAuth, async (req, res) => {
-//   const blog_id = req.params.id;
-//   const { Comments } = req.body;
-
-//   try {
-//     const commentsData = await Comments.create(
-//       { remark },
-//       { where: { id: blog_id } }
-
-//     );
-
-//     console.log(commentsData)
-//     res.status(200).json(commentsData);
-//   } catch (err) {
-
-//     res.status(400).json(err);
-//   }
-// });
 //_______________________________________________________________
 //router asked if logged in before allowing to delete
 router.delete('/:id', withAuth, async (req, res) => {

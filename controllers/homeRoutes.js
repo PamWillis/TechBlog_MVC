@@ -53,7 +53,7 @@ router.get('/blog/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-//__________________________________________________________________
+// __________________________________________________________________
 // Use withAuth middleware to prevent access to route
 router.get('/blog', withAuth, async (req, res) => {
   try {
@@ -74,7 +74,27 @@ router.get('/blog', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+//__________________________________________________________________
+// Use withAuth middleware to prevent access to route (get blog info to render update page)
+router.get('/update', withAuth, async (req, res) => {
+  try {
+    const userData = await Blog.findByPk(req.params.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{model: Blog}],
+    });
 
+    const user = userData.get({ plain: true });
+
+    res.render('update', {
+      ...user,
+      logged_in: true
+    });
+  } catch (err) {
+    
+    res.status(500).json(err);
+  }
+});
+//__________________________________________________________________
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
