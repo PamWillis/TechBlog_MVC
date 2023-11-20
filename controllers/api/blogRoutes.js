@@ -82,7 +82,7 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 //_________________________________________________________
 //update blog
-router.put("/:id", async (req, res) => {
+router.put('/:id', async (req, res) => {
   const blog_id = req.params.id;
   const { heading, content } = req.body;
 

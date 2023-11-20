@@ -45,7 +45,7 @@ router.get('/blog/:id', async (req, res) => {
 
     const blog = blogData.get({ plain: true });
 
-    res.render('update', {
+    res.render('comment', {
       ...blog,
       logged_in: req.session.logged_in
     });
@@ -77,29 +77,30 @@ router.get('/blog', withAuth, async (req, res) => {
 });
 //__________________________________________________________________
 // Use withAuth middleware to prevent access to route (get blog info to render update page)
-router.get('/update', withAuth, async (req, res) => {
+router.get('/update/:blogId', withAuth, async (req, res) => {
   try {
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Blog }],
-     
+    // Fetch the item from the database using the ID from the URL parameter
+    const blogData = await Blog.findByPk(req.params.blogId, {
+      // Include related user data (for example, the user who created the item)
+      include: [{ model: User, attributes: ['name'] }], // Adjust attributes as needed
     });
 
-    const user = userData.get({ plain: true });
+    // Check if the item was found
+    if (blogData) {
+      // Convert the item data to a plain format for the template
+      const blog = blogData.get({ plain: true });
 
-    res.render('update', {
-      id: user.blog.id,
-      blog: {
-        heading: user.blog.heading,
-        content: user.blog.content
-      },
-      user: {
-        name: user.name
-      },
-      createdAt: user.blog.createdAt,
-      logged_in: true
-    });
+      // Render the 'edit' page with the item data and logged-in status
+      res.render('update', { 
+        blog,
+        logged_in: req.session.logged_in 
+      });
+    } else {
+      // If the item is not found, send a 404 response
+      res.status(404).send('blog not found');
+    }
   } catch (err) {
+    // Handle any errors with a 500 response
     res.status(500).json(err);
   }
 });
