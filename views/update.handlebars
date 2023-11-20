@@ -5,14 +5,14 @@
     <input type="hidden" name="blogID" value="{{id}}"/>
     <div class="form-group">
       <label for="blog-heading">Heading:</label>
-      <input class="form-input" type="text" value="{{blog.heading}}" id="blog-heading" name="heading" />
+      <input class="form-input" type="text" value="{{user.blog.heading}}" id="blog-heading" name="heading" />
     </div>
     <div>
-      <div>{{user.name}} {{format_date createdAt}}</div>
+    
     </div>
     <div class="form-group">
       <label for="blog-content">Content:</label>
-      <input class="form-input" type="text" value="{{blog.content}}" id="blog-content" name="content" />
+      <input class="form-input" type="text" value="{{user.blog.content}}" id="blog-content" name="content" />
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Update Blog</button>
