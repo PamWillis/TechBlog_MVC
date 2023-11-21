@@ -1,11 +1,11 @@
-const commentForm = document.querySelector('#comment-form');
+const commentForm = document.querySelector('.comment-form');
 commentForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   
   // Get the comment text and blog ID from the form
   const remark = commentForm.querySelector('textarea[name="remark"]').value;
   const blogId = commentForm.querySelector('input[name="blogId"]').value;
-  
+  console.log(remark)
   try {
     // Send a POST request to the server to add the comment
     const response = await fetch('/comments', {
@@ -27,6 +27,6 @@ commentForm.addEventListener('submit', async (e) => {
   }
 });
 
-document.querySelector('.remark').addEventListener('submit', (e) => {
+document.querySelector('#remark').addEventListener('submit', (e) => {
   e.preventDefault();
 });
