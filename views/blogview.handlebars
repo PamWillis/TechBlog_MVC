@@ -5,10 +5,10 @@
             <h3>By: {{user.name}}</h3>
             <p>{{format_date createdAt}}</p>
         </div>
-        <h3>Content test</h3>
+        <h3>Content</h3>
         <p>{{content}}</p>
-        <p>{{comment.remark}}</p>
-        <p>test</p>
+        {{#each Comments}}
+        <p>{{remark}}</p>
+        {{/each}}
     </div>
 </section>
-

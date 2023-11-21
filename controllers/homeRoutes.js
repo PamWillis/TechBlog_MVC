@@ -45,7 +45,7 @@ router.get('/blog/:id', async (req, res) => {
 
     const blog = blogData.get({ plain: true });
 
-    res.render('comment', {
+    res.render('blogview', {
       ...blog,
       logged_in: req.session.logged_in
     });
@@ -104,6 +104,30 @@ router.get('/update/:blogId', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+//__________________________________________________________________
+//use to render comment form
+router.get('/comments/:blogId', withAuth, async (req, res) => {
+  try {
+    // Fetch the blog from the database using the ID from the URL parameter
+    const blogData = await Blog.findByPk(req.params.blogId);
+
+    // Check if the blog was found
+    if (blogData) {
+      // Convert the blog data to a plain format for the template
+      const blog = blogData.get({ plain: true });
+
+      // Render the comment form page with the blog data and logged-in status
+      res.render('comments', { blog, logged_in: req.session.logged_in });
+    } else {
+      // If the blog is not found, send a 404 response
+      res.status(404).send('Blog not found');
+    }
+  } catch (err) {
+    // Handle any errors with a 500 response
+    res.status(500).json(err);
+  }
+});
+
 //__________________________________________________________________
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route

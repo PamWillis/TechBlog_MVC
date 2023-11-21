@@ -6,6 +6,7 @@
     {{/if}}
 </div>
 
+{{!-- create blog form --}}
 
 <div class="row ml-4 mt-4">
     <div class="col-md-6 card">
@@ -30,6 +31,7 @@
         </form>
     </div>
 
+{{!-- your current blogs delete and update buttons --}}
 
     {{#if blogs.length}}
     <div class="col-md-6 card delete">
@@ -45,7 +47,7 @@
             <div class="col-md-6">
                 <button class="btn btn-sm btn-danger" blog-id="{{blog.id}}">DELETE</button>
                
-                <button class="btn btn-sm btn-info" id="update-blog-form"><a href="/update/{{blog.id}}">UPDATE</a><button>
+                <button class="btn btn-sm btn-info" id="update-blog-form"><a href="/update/{{blog.id}}">UPDATE</a></button>
                 </a>
             </div>
         </div>

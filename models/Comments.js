@@ -22,12 +22,16 @@ Comments.init(
       },
     },
     blog_id: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: 'blog',
-          key: 'id',
-        },
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'blog',
+        key: 'id',
       },
+    },
+    date: {
+      type: DataTypes.DATEONLY,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     sequelize,

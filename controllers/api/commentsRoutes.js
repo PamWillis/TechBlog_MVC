@@ -3,23 +3,24 @@ const router = express.Router();
 const { User, Blog, Comments } = require('../../models')
 const withAuth = require('../../utils/auth')
 
-router.post('/:id', withAuth, async (req, res) => {
-    const blog_id = req.params.id;
-    const { Comments } = req.body;
-  
-    try {
-      const commentsData = await Comments.create(
-        { remark },
-        { where: { id: blog_id } }
-  
-      );
-  
-      console.log(commentsData)
-      res.status(200).json(commentsData);
-    } catch (err) {
-  
-      res.status(400).json(err);
-    }
-  });
+router.post('/comments', withAuth, async (req, res) => {
+  try {
+    // Get the comment data from the request body
+    const { remark, blogId } = req.body;
+
+    // Create the comment in the database
+    const newComment = await Comments.create({
+      remark: remark,
+      blog_id: blogId,
+      user_id: req.session.user_id,
+    });
+
+    // Redirect the user back to the blog page
+    res.redirect(`/blogs/${blogId}`);
+  } catch (err) {
+    // Handle any errors with a 500 response
+    res.status(500).json(err);
+  }
+});
   
   module.exports = router;
