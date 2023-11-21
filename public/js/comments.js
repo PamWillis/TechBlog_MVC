@@ -24,6 +24,7 @@ commentForm.addEventListener('submit', async (e) => {
   } catch (err) {
     // Handle any errors with an alert
     alert('Failed to add comment');
+    console.log(err)
   }
 });
 
