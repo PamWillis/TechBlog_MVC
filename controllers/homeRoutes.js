@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 // --------------------------------------------------
 //get blog by user id (title on blog/dashboard page)
 router.get('/blog/:id', async (req, res) => {
-  console.log(res)
+  // console.log(res)
   try {
     // Find the blog post with the specified id
     const blogData = await Blog.findByPk(req.params.id, {      

@@ -17,6 +17,7 @@ console.log(response)
     if (response.ok) {
       // Refresh the page to show the new comment
       document.location.reload();
+
     } else {
 
       // Handle any errors with an alert
