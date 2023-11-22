@@ -8,53 +8,51 @@
 
 {{!-- create blog form --}}
 
-<div class="row ml-4 mt-4 home-card">
-    <div class="col-md-6 home-card">
-        <h3>Create a Blog:</h3>
 
-        <form class="form new-blog-form" action="/api/blogs" method="POST">
-            <div class="form-group">
-                <label form="blog-heading">heading:</label>
-                <input class="form-input" type="text" id="blog-heading" name="heading" />
-            </div>
-            <div>
-                <div>{{user.name}}
-                    {{format_date createdAt}}</div>
-            </div>
-            <div class="form-group">
-                <label for="blog-content">content:</label>
-                <input class="form-input" type="text" id="blog-content" name="content" />
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit Blog</button>
-            </div>
-        </form>
-    </div>
+<div class="col-md-6 home-card">
+    <h1>Create a Blog:</h1>
+    <form class="form new-blog-form" action="/api/blogs" method="POST">
+        <div class="form-group">
+            <label form="blog-heading">heading:</label>
+            <input class="form-input" type="text" id="blog-heading" name="heading" />
+        </div>
+        <div>
+            <div>{{user.name}}
+                {{format_date createdAt}}</div>
+        </div>
+        <div class="form-group">
+            <label for="blog-content">content:</label>
+            <input class="form-input" type="text" id="blog-content" name="content" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit Blog</button>
+        </div>
+    </form>
+</div>
 
 {{!-- your current blogs delete and update buttons --}}
 
-    {{#if blogs.length}}
-    <div class="col-md-6 home-card delete">
-        <h3>Your Current Blogs:</h3>
-        <p>Click on a title to review or update</p>
+{{#if blogs.length}}
+<div class="col-md-6 home-card delete">
+    <h1>Your Current Blogs:</h1>
+    <p>Click on a title to review or update</p>
 
-        {{#each blogs as |blog|}}
-        <div class="row mb-6 center-card">
-            <div class="col-md-6 ">
-                <div class='heading'><a href="/blog/{{blog.id}}">{{blog.heading}}</a></div>
-                <p>{{format_date createdAt}}</p>
-            </div>
-            <div class="col-md-6">
-                <button class="btn btn-sm btn-danger" blog-id="{{blog.id}}">DELETE</button>
-               
-                <button class="btn btn-sm btn-info" id="update-blog-form"><a href="/update/{{blog.id}}">UPDATE</a></button>
-                </a>
-            </div>
+    {{#each blogs as |blog|}}
+    <div class="row mb-6 center-card">
+        <div class="col-md-6 ">
+            <div class='heading'><a href="/blog/{{blog.id}}">{{blog.heading}}</a></div>
+            <p>{{format_date createdAt}}</p>
         </div>
-        {{/each}}
+        <div class="col-md-6">
+            <button class="btn btn-sm btn-danger" blog-id="{{blog.id}}">DELETE</button>
+
+            <button class="btn btn-sm btn-info" id="update-blog-form"><a href="/update/{{blog.id}}">UPDATE</a></button>
+            </a>
+        </div>
     </div>
-    {{/if}}
+    {{/each}}
+</div>
+{{/if}}
 </div>
 
 <script src="/js/dashboard.js"></script>
-
