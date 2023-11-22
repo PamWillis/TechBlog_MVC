@@ -16,7 +16,7 @@ console.log(req.body)
 console.log(newComment)
 res.status(200).json(newComment);
     // Redirect the user back to the blog page
-    res.redirect(`/blog/${blogId}`);
+    // res.redirect(`/blog/${blogId}`);
   } catch (err) {
     console.log(err)
     // Handle any errors with a 500 response
