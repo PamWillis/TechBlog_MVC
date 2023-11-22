@@ -28,10 +28,6 @@ Comments.init(
         key: 'id',
       },
     },
-    date: {
-      type: DataTypes.DATEONLY,
-      defaultValue: DataTypes.NOW,
-    },
   },
   {
     sequelize,

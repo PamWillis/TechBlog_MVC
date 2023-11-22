@@ -5,12 +5,12 @@ commentForm.addEventListener('submit', async (e) => {
   // Get the comment text and blog ID from the form
   const remark = commentForm.querySelector('textarea[name="remark"]').value;
   const blogId = commentForm.querySelector('input[name="blogId"]').value;
-
+console.log(remark, blogId)
   try {
     // Send a POST request to the server to add the comment
     const response = await fetch('/api/comments', {
       method: 'POST',
-      body: JSON.stringify({ remark, blogId }),
+      body: JSON.stringify({ remark, blog_id: blogId }),
       headers: { 'Content-Type': 'application/json' },
     });
 console.log(response)
