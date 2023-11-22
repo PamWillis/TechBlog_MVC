@@ -2,18 +2,20 @@
 <div>
     {{#if logged_in}}
     {{#if blogs.length}}
-    <div class="col-md-6 blog-list card">
+    <div class="col-md-6 blog-list home-card">
         <h3>All Current Blogs:</h3>
-        <p>Click on a title to read and add a comment</p>
-
+        <p>Click on a title to read the full blog and view other comments.</p>
+        <p>Feel free to add your own comment with the comment button.</p>
+        <div><br></div>
         {{#each blogs as |blog|}}
-        <div class="row mb-2">
+        <div class="row mb-2 center-card">
             <div class="col-md-6">
                 <h3><a href="/blog/{{blog.id}}">{{blog.heading}}</a></h3>
                 <p>{{format_date createdAt}}</p>
             </div>
             <div class="col-md-6">
-                <button class="btn btn-sm btn-primary" id="new-comments-form"><a href="/comments/{{blog.id}}">COMMENTS</a></button>
+                <button class="btn btn-sm btn-primary" id="new-comments-form"><a
+                        href="/comments/{{blog.id}}">COMMENTS</a></button>
             </div>
         </div>
         {{/each}}

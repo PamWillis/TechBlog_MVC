@@ -8,8 +8,8 @@
 
 {{!-- create blog form --}}
 
-<div class="row ml-4 mt-4">
-    <div class="col-md-6 card">
+<div class="row ml-4 mt-4 home-card">
+    <div class="col-md-6 home-card">
         <h3>Create a Blog:</h3>
 
         <form class="form new-blog-form" action="/api/blogs" method="POST">
@@ -34,14 +34,14 @@
 {{!-- your current blogs delete and update buttons --}}
 
     {{#if blogs.length}}
-    <div class="col-md-6 card delete">
+    <div class="col-md-6 home-card delete">
         <h3>Your Current Blogs:</h3>
         <p>Click on a title to review or update</p>
 
         {{#each blogs as |blog|}}
-        <div class="row mb-6">
-            <div class="col-md-6">
-                <h3><a href="/blog/{{blog.id}}">{{blog.heading}}</a></h3>
+        <div class="row mb-6 center-card">
+            <div class="col-md-6 ">
+                <div class='heading'><a href="/blog/{{blog.id}}">{{blog.heading}}</a></div>
                 <p>{{format_date createdAt}}</p>
             </div>
             <div class="col-md-6">

@@ -6,40 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{{title}}}</title>
 
-  <link rel="stylesheet" href="/css/style.css">
+ 
   <link rel="stylesheet" href="/css/jass.css">
+   <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
-<body >
+<body>
 
   <header class="banner">
     <a href="/">
       <h1>The Tech Blog</h1>
     </a>
-    <!-- Conditionally render login or logout links -->
-    {{#if logged_in}}
-    <a href="/">
-      <button class="no-button" id="home">home</button>
-    </a>
-    <a href="/blog">
-      <button class="no-button" id="blog">dashboard</button>
-    </a>
-    <button class="no-button" id="logout">logout</button>
+      <!-- Conditionally render login or logout links -->
+      {{#if logged_in}}
 
-    {{else}}
-    {{!-- //if not logged in --> --}}
-    <a href="/">
-      <button class="no-button" id="home">home</button>
-    </a>
+      <a href="/">
+        <button class="no-button" id="home">HOME</button>
+      </a>
+      <a href="/blog">
+        <button class="no-button" id="blog">DASHBOARD</button>
+      </a>
+      <button class="no-button" id="logout">LOGOUT</button>
 
-    <a href="/login">
-      <button class="no-button" id="blog">dashboard</button>
-    </a>
-    <a href="/login">
-      <button class="no-button" id="login">login</button>
-    </a>
-    {{/if}}
+      {{else}}
+      {{!-- //if not logged in --> --}}
+      <a href="/">
+        <button class="no-button" id="home">HOME</button>
+      </a>
+
+      <a href="/login">
+        <button class="no-button" id="blog">DASHBOARD</button>
+      </a>
+      <a href="/login">
+        <button class="no-button" id="login">LOGIN</button>
+      </a>
+      {{/if}}
+
+
   </header>
   <main class="container container-fluid mt-5">
     <!-- Render the sub layout -->
