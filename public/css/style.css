@@ -86,7 +86,11 @@ body {
   .home-card h2,
   .home-card h3 {
     margin-bottom: 10px;
-    /* Adjust this value for the desired spacing between elements */
+  }
+
+  .comment p {
+    color: green;
+
   }
 
   /* ---------------------------------------------------- */

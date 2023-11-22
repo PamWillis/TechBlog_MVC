@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blog, User } = require('../models');
+const { Blog, User, Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -33,27 +33,40 @@ router.get('/', async (req, res) => {
 // --------------------------------------------------
 //get blog by user id (title on blog/dashboard page)
 router.get('/blog/:id', async (req, res) => {
+  console.log(res)
   try {
-    const blogData = await Blog.findByPk(req.params.id, {
+    // Find the blog post with the specified id
+    const blogData = await Blog.findByPk(req.params.id, {      
       include: [
         {
           model: User,
           attributes: ['name'],
         },
-                {
-          model: User,
-          attributes: ['name'],
+        {
+          model: Comments,
+          attributes: ['remark'],
+
+          include: [
+            {
+              model: User,
+              attributes: ['name'],
+            },
+          ],
         },
       ],
     });
 
+    // Extract the plain JavaScript object from the blogData
     const blog = blogData.get({ plain: true });
-
+console.log(blog)
+    // Render the 'blogview' template and pass the blog data to it
     res.render('blogview', {
       ...blog,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
+    
   } catch (err) {
+
     res.status(500).json(err);
   }
 });
