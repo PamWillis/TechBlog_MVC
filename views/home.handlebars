@@ -30,10 +30,7 @@
     {{#each blogs}}
     <div class="center-card">
         <h2>{{heading}}</h2>
-        <div>
-            <p>
-            <h3>By: {{user.name}}</h3>{{format_date createdAt}}</p>
-        </div>
+        <h3>By: {{user.name}} {{format_date createdAt}}</h3>
         <h3>Content:</h3>
         <p>{{content}}</p>
         {{#each comments}}
