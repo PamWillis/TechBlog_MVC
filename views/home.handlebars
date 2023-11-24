@@ -2,15 +2,15 @@
 <div>
     {{#if logged_in}}
     {{#if blogs.length}}
-    <div class="col-md-6 blog-list home-card">
-        <h3>All Current Blogs:</h3>
+    <div class="col-md-6 blog-list center-card">
+        <h1>All Current Blogs:</h1>
         <p>Click on a title to read the full blog and view other comments.</p>
         <p>Feel free to add your own comment with the comment button.</p>
         <div><br></div>
         {{#each blogs as |blog|}}
         <div class="row mb-2 center-card">
             <div class="col-md-6">
-                <h3><a href="/blog/{{blog.id}}">{{blog.heading}}</a></h3>
+                <div class="heading"><a href="/blog/{{blog.id}}">{{blog.heading}}</a></div>
                 <p>{{format_date createdAt}}</p>
             </div>
             <div class="col-md-6">
@@ -23,17 +23,18 @@
     {{/if}}
 
     {{else}}
-    <h1>Welcome to my blog page</h1>
-    <h3>Please log in contribute and view or edit your own blogs</h3>
-    <h3>List of Blogs</h3>
+    <div class="center" <h1>Welcome to my blog page</h1>
+        <h3>Please log in view, contribute your own blog or comment on others</h3>
+        <h2>List of Blogs</h2>
+    </div>
     {{#each blogs}}
-    <div class="home-card">
+    <div class="center-card">
         <h2>{{heading}}</h2>
         <div>
-            <h3>By: {{user.name}}</h3>
-            <p>{{format_date createdAt}}</p>
+            <p>
+            <h3>By: {{user.name}}</h3>{{format_date createdAt}}</p>
         </div>
-        <h3>Content</h3>
+        <h3>Content:</h3>
         <p>{{content}}</p>
         {{#each comments}}
         <p>{{remark}}</p>

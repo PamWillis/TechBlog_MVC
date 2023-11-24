@@ -1,16 +1,16 @@
 <div class="container container-fluid mt-5">{{blog.id}}
-  <div class="home-card" id="#single-blog">
+  <div class="center-card" id="#single-blog">
     <h2>{{heading}}</h2>
     <div>
-      <h3>By: {{user.name}}</h3>
-      <p>{{format_date createdAt}}</p>
+      <p><h3>By: {{user.name}}</h3>
+      <h4>{{format_date createdAt}}</h4></p>
     </div>
-    <h3>Content</h3>
+    <h3>Content:</h3>
     <p>{{content}}</p>
   
     {{#each comments}}
       <div class="center-card">
-    <p>comment from: {{user.name}}, {{format_date createdAt}}</p>
+    <p>comment from: {{user.name}}  <h4>{{format_date createdAt}}</h4></p>
       <p>{{remark}}</p>
       </div>
     {{/each}}
